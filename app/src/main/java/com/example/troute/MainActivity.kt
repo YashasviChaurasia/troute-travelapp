@@ -129,7 +129,6 @@ fun ScrollableRow(items: MutableList<TravelStop>, showDistanceInMiles: Boolean) 
             Text("Traveled Distance: ${"%.2f".format(traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
             Text("Remaining Distance: ${"%.2f".format(totalDistance-traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
         }
-        Text("bloody Travelled Distance: ${"%.2f".format(traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
 
     }
 }
@@ -203,7 +202,6 @@ fun NormalRow(items: MutableList<TravelStop>, showDistanceInMiles: Boolean) {
             Text("Traveled Distance: ${"%.2f".format(traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
             Text("Remaining Distance: ${"%.2f".format(totalDistance-traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
         }
-        Text("bloody Travelled Distance: ${"%.2f".format(traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
 
     }
 }
