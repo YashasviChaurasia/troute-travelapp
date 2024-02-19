@@ -122,14 +122,14 @@ fun ScrollableRow(items: MutableList<TravelStop>, showDistanceInMiles: Boolean) 
         Spacer(modifier=Modifier.padding(bottom = 10.dp))
 
         if (showDistanceInMiles){
-            Text("Total Distance: ${"%.2f".format(kmToMiles(totalDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
-            Text("Traveled Distance: ${"%.2f".format(kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
-            Text("Remaining Distance: ${"%.2f".format(kmToMiles(totalDistance)-kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
+            Text("Total Distance: ${"%.2f".format(kmToMiles(totalDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 16.sp)
+            Text("Traveled Distance: ${"%.2f".format(kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 16.sp)
+            Text("Remaining Distance: ${"%.2f".format(kmToMiles(totalDistance)-kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 16.sp)
         }
         else{
-            Text("Total Distance: ${"%.2f".format(totalDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
-            Text("Traveled Distance: ${"%.2f".format(traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
-            Text("Remaining Distance: ${"%.2f".format(totalDistance-traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
+            Text("Total Distance: ${"%.2f".format(totalDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 16.sp)
+            Text("Traveled Distance: ${"%.2f".format(traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 16.sp)
+            Text("Remaining Distance: ${"%.2f".format(totalDistance-traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 16.sp)
         }
 
     }
@@ -191,14 +191,14 @@ fun NormalRow(items: MutableList<TravelStop>, showDistanceInMiles: Boolean) {
         Spacer(modifier=Modifier.padding(bottom = 10.dp))
 
         if (showDistanceInMiles){
-            Text("Total Distance: ${"%.2f".format(kmToMiles(totalDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
-            Text("Traveled Distance: ${"%.2f".format(kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
-            Text("Remaining Distance: ${"%.2f".format(kmToMiles(totalDistance)-kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
+            Text("Total Distance: ${"%.2f".format(kmToMiles(totalDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 16.sp)
+            Text("Traveled Distance: ${"%.2f".format(kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 16.sp)
+            Text("Remaining Distance: ${"%.2f".format(kmToMiles(totalDistance)-kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 16.sp)
         }
         else{
-            Text("Total Distance: ${"%.2f".format(totalDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
-            Text("Traveled Distance: ${"%.2f".format(traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
-            Text("Remaining Distance: ${"%.2f".format(totalDistance-traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
+            Text("Total Distance: ${"%.2f".format(totalDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 16.sp)
+            Text("Traveled Distance: ${"%.2f".format(traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 16.sp)
+            Text("Remaining Distance: ${"%.2f".format(totalDistance-traveledDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 16.sp)
         }
 
     }
@@ -241,11 +241,11 @@ fun UnitRow(roundUp: Boolean, onRoundUpChanged:(Boolean)->Unit,modifier: Modifie
     Row (
         modifier= modifier
             .fillMaxWidth()
-            .padding(bottom = 50.dp),
+            .padding(bottom = 30.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = "Convert to Miles", style = MaterialTheme.typography.displaySmall, fontSize = 18.sp, fontStyle = FontStyle.Italic)
+        Text(text = "Convert to Miles", style = MaterialTheme.typography.displaySmall, fontSize = 14.sp, fontStyle = FontStyle.Italic)
         Switch(
             checked = roundUp,
             onCheckedChange =onRoundUpChanged,
@@ -276,8 +276,8 @@ fun Travel(randomDistances: List<Double>,modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier=Modifier.padding(bottom = 30.dp))
-        Text(text="Delhi\nto\nBangalore",modifier=modifier.padding(8.dp), fontSize = 56.sp,textAlign = TextAlign.Start, fontWeight = FontWeight.Black)
+        Spacer(modifier=Modifier.padding(bottom = 20.dp))
+        Text(text="Delhi\nto\nBangalore",modifier=modifier.padding(8.dp), fontSize = 50.sp,textAlign = TextAlign.Start, fontWeight = FontWeight.Black)
         Spacer(modifier=Modifier.padding(bottom = 10.dp))
         Row(modifier= Modifier
             .padding(1.dp)
