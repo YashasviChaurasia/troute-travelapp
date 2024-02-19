@@ -56,9 +56,9 @@ class MainActivity : ComponentActivity() {
 
 class TravelStop(val id:Int, val name:String, var distance:Double)
 
-fun convertDistanceToMiles(travelStops: MutableList<TravelStop>) {
-    travelStops.forEach { it.distance = kmToMiles(it.distance) }
-}
+//fun convertDistanceToMiles(travelStops: MutableList<TravelStop>) {
+//    travelStops.forEach { it.distance = kmToMiles(it.distance) }
+//}
 
 fun kmToMiles(km: Double): Double {
     return km * 0.621370
@@ -83,17 +83,19 @@ fun ScrollableRow(items: MutableList<TravelStop>, showDistanceInMiles: Boolean) 
             }
         }
         checkedStateList = newList
-        val checkedDistances = items.filterIndexed { idx, _ -> checkedStateList[idx] }.map { it.distance }
-        traveledDistance = checkedDistances.sum()
 
+        val checkedDistances = items.filterIndexed { idx, _ -> checkedStateList[idx] }.map { it.distance }
+
+        traveledDistance = checkedDistances.sum()
+//        if (showDistanceInMiles) {
+//            convertDistanceToMiles(items) // Convert all distances to miles
+//        }
     }
 
     val totalDistance = items.sumOf { it.distance }
-    val targetValue = if (showDistanceInMiles) {
-        kmToMiles(traveledDistance/totalDistance).toFloat()
-    } else {
-        (traveledDistance / totalDistance).toFloat()
-    }
+
+    val targetValue = (traveledDistance / totalDistance).toFloat()
+
 
     val progress by animateFloatAsState(targetValue = targetValue, label = "")
 
@@ -120,9 +122,9 @@ fun ScrollableRow(items: MutableList<TravelStop>, showDistanceInMiles: Boolean) 
         Spacer(modifier=Modifier.padding(bottom = 10.dp))
 
         if (showDistanceInMiles){
-            Text("Total Distance: ${"%.2f".format(totalDistance)} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
+            Text("Total Distance: ${"%.2f".format(kmToMiles(totalDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
             Text("Traveled Distance: ${"%.2f".format(kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
-            Text("Remaining Distance: ${"%.2f".format(totalDistance-kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
+            Text("Remaining Distance: ${"%.2f".format(kmToMiles(totalDistance)-kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
         }
         else{
             Text("Total Distance: ${"%.2f".format(totalDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
@@ -157,11 +159,7 @@ fun NormalRow(items: MutableList<TravelStop>, showDistanceInMiles: Boolean) {
     }
 
     val totalDistance = items.sumOf { it.distance }
-    val targetValue = if (showDistanceInMiles) {
-        kmToMiles(traveledDistance/totalDistance).toFloat()
-    } else {
-        (traveledDistance / totalDistance).toFloat()
-    }
+    val targetValue = (traveledDistance / totalDistance).toFloat()
 
     val progress by animateFloatAsState(targetValue = targetValue, label = "")
 
@@ -193,9 +191,9 @@ fun NormalRow(items: MutableList<TravelStop>, showDistanceInMiles: Boolean) {
         Spacer(modifier=Modifier.padding(bottom = 10.dp))
 
         if (showDistanceInMiles){
-            Text("Total Distance: ${"%.2f".format(totalDistance)} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
+            Text("Total Distance: ${"%.2f".format(kmToMiles(totalDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
             Text("Traveled Distance: ${"%.2f".format(kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
-            Text("Remaining Distance: ${"%.2f".format(totalDistance-kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
+            Text("Remaining Distance: ${"%.2f".format(kmToMiles(totalDistance)-kmToMiles(traveledDistance))} Miles", fontWeight = FontWeight.Normal, fontSize = 20.sp)
         }
         else{
             Text("Total Distance: ${"%.2f".format(totalDistance)} Km", fontWeight = FontWeight.Normal, fontSize = 20.sp)
@@ -259,6 +257,7 @@ fun UnitRow(roundUp: Boolean, onRoundUpChanged:(Boolean)->Unit,modifier: Modifie
 @Composable
 fun Travel(randomDistances: List<Double>,modifier: Modifier = Modifier) {
     val travelStops = mutableListOf<TravelStop>()
+
     for (i in 0 until randomDistances.size) {
         val name = "TravelStop${i + 1}"
         val stop = TravelStop(i + 1, name, randomDistances[i])
@@ -277,9 +276,6 @@ fun Travel(randomDistances: List<Double>,modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        if (miles) {
-            convertDistanceToMiles(travelStops)
-        }
         Spacer(modifier=Modifier.padding(bottom = 30.dp))
         Text(text="Delhi\nto\nBangalore",modifier=modifier.padding(8.dp), fontSize = 56.sp,textAlign = TextAlign.Start, fontWeight = FontWeight.Black)
         Spacer(modifier=Modifier.padding(bottom = 10.dp))
